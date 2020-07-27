@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using WpfAppCalibun.Services;
 using WpfAppCalibun.ViewModels;
 
 namespace WpfAppCalibun
@@ -22,6 +23,9 @@ namespace WpfAppCalibun
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
+
+            _container
+                .PerRequest<ICalculations, Calculations>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

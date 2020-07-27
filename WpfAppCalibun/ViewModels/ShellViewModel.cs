@@ -3,19 +3,22 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using WpfAppCalibun.Models;
+using WpfAppCalibun.Services;
 
 namespace WpfAppCalibun.ViewModels
 {
     public class ShellViewModel : Conductor<object> // Screen
     {
+        private ICalculations _calculations;
         private string _firstName = "Faheem"; // camel case
         private string _lastName;
         private BindableCollection<PersonModal> _people = new BindableCollection<PersonModal>();
         private BindableCollection<StudentModel> _student = new BindableCollection<StudentModel>();
         private PersonModal _selectedPerson;
         private StudentModel _selectedStudent;
-        public ShellViewModel()
+        public ShellViewModel(ICalculations calculations)
         {
+            _calculations = calculations;
             People.Add(new PersonModal { FirstName = "Faheem", LastName = "Ahmad" });
             People.Add(new PersonModal { FirstName = "Salman", LastName = "Khan" });
             People.Add(new PersonModal { FirstName = "Qasim", LastName = "Ali" });
